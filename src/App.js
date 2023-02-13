@@ -16,19 +16,19 @@ function App() {
       <div className='container'>
         <img src={map} alt="loading map" className='map'/>
         <div className='characters'>
-        <div className='waldo'>
+        <div className='character waldo'>
           <div className='character-name'>Waldo</div>
           <img src={waldo} alt='waldo'/>
         </div>
-        <div className='wenda'>
+        <div className='character wenda'>
           <div className='character-name'>Wenda</div>
           <img src={wenda} alt='wenda'/>
         </div>
-        <div className='whitebeard'>
+        <div className='character whitebeard'>
           <div className='character-name'>Whitebeard</div>
           <img src={whitebeard} alt='whitebeard'/>
         </div>
-        <div className='odlaw'>
+        <div className='character odlaw'>
           <div className='character-name'>Odlaw</div>
           <img src={odlaw} alt='odlaw'/>
         </div>
