@@ -1,10 +1,14 @@
 import './App.css';
 import map from './pics/maps/beach.jpeg';
+import Timer from './components/timer';
 
 function App() {
   return (
     <div className="app">
       <div className='header'> Where's Waldo</div>
+      <div className='timer-container'>
+        <Timer/>
+      </div>
       <div className='container'>
         <img src={map} alt="loading map" className='map'/>
       </div>
@@ -17,7 +21,6 @@ export default App;
 
 /*
   Frontend:
-    Show first map
     Start timer
     Display characters
     Add circle around cursor 

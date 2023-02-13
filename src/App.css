@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: calc(10px + 5vh);
+  gap: 2vh;
   margin-top: 15px;
 }
 
