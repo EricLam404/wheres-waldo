@@ -1,9 +1,14 @@
 import './App.css';
+import map from './pics/maps/beach.jpeg';
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <div className="app">
+      <div className='header'> Where's Waldo</div>
+      <div className='container'>
+        <img src={map} alt="loading map" className='map'/>
+      </div>
+    </div> 
   );
 }
 
