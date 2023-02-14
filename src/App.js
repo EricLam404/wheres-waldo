@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 import Timer from './components/timer';
 import Image from './components/circle';
 import waldo from './pics/characters/waldo.jpeg';
@@ -45,11 +45,8 @@ export default App;
 
 /*
   Frontend:
-    Add circle around cursor 
-    Show charcters when clicked
     Check if clicked character
     End game if find all characters
-    Add more maps with various difficulties
   Backend:
     Save highscores by a nickname
     Categorize each highscore by map

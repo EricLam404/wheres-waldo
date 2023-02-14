@@ -1,40 +1,40 @@
 import React, { useState } from "react";
 import map from '../pics/maps/beach.jpeg';
+import CharacterList from "./characterList";
+import "../css/circle.css";
 
-function Circle({ show, x, y }){
+function Circle({ show, x, y, handleCharacterSelect }){
   return show ? (
-    <div
-      style={{
-        position: "fixed",
-        left: x - 10,
-        top: y - 10,
-        width: "20px",
-        height: "20px",
-        borderRadius: "10px",
-        border: "2px solid red",
-        pointerEvents: "none"
-      }}
-    />
+    <div>
+        <div className="circle" style={{ left: x - 10, top: y - 10 }}/>
+        <CharacterList x={x} y={y} handleCharacterSelect={handleCharacterSelect}/>
+    </div>
   ) : null;
 };
 
-const Image = () => {
-  const [showCircle, setShowCircle] = useState(false);
-  const [circleX, setCircleX] = useState(0);
-  const [circleY, setCircleY] = useState(0);
+function Image(){
+    const [showCircle, setShowCircle] = useState(false);
+    const [circleX, setCircleX] = useState(0);
+    const [selectedCharacter, setSelectedCharacter] = useState(null);
+    const [circleY, setCircleY] = useState(0);
 
-  const handleClick = event => {
-    setShowCircle(!showCircle);
-    setCircleX(event.clientX);
-    setCircleY(event.clientY);
-  };
+    const handleClick = event => {
+        setShowCircle(!showCircle);
+        setCircleX(event.clientX);
+        setCircleY(event.clientY);
+    };
+    const handleCharacterSelect = (character) => {
+        setSelectedCharacter(character);
+        setShowCircle(false);
+    };
 
-  return (
-    <div onClick={handleClick}>
-      <img src={map} alt="loading map" className='map'/>
-      <Circle show={showCircle} x={circleX} y={circleY} />
-    </div>
-  );
+    return (
+        <div onClick={handleClick}>
+        <img src={map} alt="loading map" className='map'/>
+        <Circle show={showCircle} x={circleX} y={circleY} handleCharacterSelect={handleCharacterSelect}/>
+        </div>
+    );
 };
+
 
 export default Image;

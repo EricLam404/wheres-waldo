@@ -1,0 +1,18 @@
+.character-list {
+    position: fixed;
+    background-color: white;
+    padding: 10px;
+    list-style: none;
+    pointer-events: all;
+}
+  
+.character-list li {
+    cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.1s ease-in-out;
+}
+  
+.character-list li:hover {
+    transform: scale(1.1);
+}
+  
