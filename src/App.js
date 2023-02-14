@@ -1,6 +1,6 @@
 import './App.css';
 import Timer from './components/timer';
-import map from './pics/maps/beach.jpeg';
+import Image from './components/circle';
 import waldo from './pics/characters/waldo.jpeg';
 import wenda from './pics/characters/wenda.png';
 import whitebeard from './pics/characters/whitebeard.jpeg';
@@ -14,7 +14,9 @@ function App() {
         <Timer/>
       </div>
       <div className='container'>
-        <img src={map} alt="loading map" className='map'/>
+        <div>
+          <Image/>
+        </div>
         <div className='characters'>
         <div className='character waldo'>
           <div className='character-name'>Waldo</div>
@@ -43,7 +45,6 @@ export default App;
 
 /*
   Frontend:
-    Display characters
     Add circle around cursor 
     Show charcters when clicked
     Check if clicked character
