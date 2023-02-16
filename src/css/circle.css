@@ -28,4 +28,21 @@
     border: 1px solid red;
     pointer-events: none;
 }
-  
+
+.character-whitebeard {
+    position: absolute;
+    width: 28px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid red;
+    pointer-events: none;
+}
+
+.character-odlaw {
+    position: absolute;
+    width: 18px;
+    height: 35px;
+    border-radius: 10px;
+    border: 1px solid red;
+    pointer-events: none;
+}

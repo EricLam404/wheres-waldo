@@ -25,12 +25,20 @@ function Image(){
 
             const waldoElement = document.querySelector(".character-waldo");
             const wendaElement = document.querySelector(".character-wanda");
+            const whitebeardElement = document.querySelector(".character-whitebeard");
+            const odlawElement = document.querySelector(".character-odlaw");
 
             waldoElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 915}px`;
             waldoElement.style.top = `${mapRect.top + 251}px`;
 
             wendaElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 1150}px`;
             wendaElement.style.top = `${mapRect.top + 278}px`;
+
+            whitebeardElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 397}px`;
+            whitebeardElement.style.top = `${mapRect.top + 233}px`;
+
+            odlawElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 150}px`;
+            odlawElement.style.top = `${mapRect.top + 238}px`;
         };
 
         handleResize();
@@ -44,8 +52,6 @@ function Image(){
     };
     const handleCharacterSelect = (e, character) => {
         const characterElement = document.querySelector(`.character-${character}`);
-        console.log(characterElement)
-        if(!characterElement) return;
         const characterRect = characterElement.getBoundingClientRect();
         if(circleX >= characterRect.left && circleX <= characterRect.right && circleY >= characterRect.top && circleY <= characterRect.bottom){
             console.log(character);
@@ -61,6 +67,8 @@ function Image(){
         <div className="character-hidden">
             <div className="hitbox character-waldo"></div>
             <div className="hitbox character-wanda"></div>
+            <div className="hitbox character-whitebeard"></div>
+            <div className="hitbox character-odlaw"></div>
         </div>
         <Circle show={showCircle} x={circleX} y={circleY} handleCharacterSelect={handleCharacterSelect}/>
         </div>
