@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import map from '../pics/maps/beach.jpeg';
 import CharacterList from "./characterList";
 import "../css/circle.css";
@@ -18,6 +18,23 @@ function Image(){
     const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [circleY, setCircleY] = useState(0);
 
+    useEffect(() => {
+        const mapElement = document.querySelector(".map");
+        const waldoElement = document.querySelector(".character-waldo");
+        const handleResize = () => {
+            const mapRect = mapElement.getBoundingClientRect();
+            console.log(mapRect);
+            waldoElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 915}px`;
+            waldoElement.style.top = `${mapRect.top + 251}px`;
+            console.log((mapRect.left > 0 ? mapRect.left : 0 + 957) + " " + (mapRect.top + 243));
+        };
+        const mapRect = mapElement.getBoundingClientRect();
+
+        waldoElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 915}px`;
+        waldoElement.style.top = `${mapRect.top + 252}px`;
+        window.addEventListener("resize", handleResize);
+    }, []);
+
     const handleClick = event => {
         setShowCircle(!showCircle);
         setCircleX(event.clientX);
@@ -29,8 +46,9 @@ function Image(){
     };
 
     return (
-        <div onClick={handleClick}>
+        <div onClick={handleClick} className="img-container">
         <img src={map} alt="loading map" className='map'/>
+        <div className="character-waldo" style={{left: '69.4%', top: '40%'}}></div>
         <Circle show={showCircle} x={circleX} y={circleY} handleCharacterSelect={handleCharacterSelect}/>
         </div>
     );
