@@ -7,7 +7,7 @@ function Circle({ show, x, y, handleCharacterSelect }){
   return show ? (
     <div>
         <div className="circle" style={{ left: x - 10, top: y - 10 }}/>
-        <CharacterList x={x} y={y} handleCharacterSelect={handleCharacterSelect}/>
+        <CharacterList x={x} y={y} onCharacterSelect={handleCharacterSelect}/>
     </div>
   ) : null;
 };
@@ -23,10 +23,8 @@ function Image(){
         const waldoElement = document.querySelector(".character-waldo");
         const handleResize = () => {
             const mapRect = mapElement.getBoundingClientRect();
-            console.log(mapRect);
             waldoElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 915}px`;
             waldoElement.style.top = `${mapRect.top + 251}px`;
-            console.log((mapRect.left > 0 ? mapRect.left : 0 + 957) + " " + (mapRect.top + 243));
         };
         const mapRect = mapElement.getBoundingClientRect();
 
@@ -40,7 +38,14 @@ function Image(){
         setCircleX(event.clientX);
         setCircleY(event.clientY);
     };
-    const handleCharacterSelect = (character) => {
+    const handleCharacterSelect = (e, character) => {
+        const characterElement = document.querySelector(`.character-${character}`);
+        if(!characterElement) return;
+        const characterRect = characterElement.getBoundingClientRect();
+        if(circleX >= characterRect.left && circleX <= characterRect.right && circleY >= characterRect.top && circleY <= characterRect.bottom){
+            console.log(character);
+        }
+
         setSelectedCharacter(character);
         setShowCircle(false);
     };
