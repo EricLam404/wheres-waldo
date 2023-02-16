@@ -2,7 +2,7 @@ import React from "react";
 import "../css/characterList.css";
 
 function CharacterList({ x, y, onCharacterSelect }){
-  const characters = ["waldo", "wanda", "whitebeard", "odlaw"];
+  const characters = ["waldo", "wenda", "whitebeard", "odlaw"];
 
   return (
     <ul className="character-list" style={{ left: x + 20, top: y - 30 }}>

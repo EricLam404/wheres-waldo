@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import map from '../pics/maps/beach.jpeg';
 import CharacterList from "./characterList";
-import "../css/circle.css";
+import "../css/image.css";
 
 function Circle({ show, x, y, handleCharacterSelect }){
   return show ? (
@@ -15,7 +15,6 @@ function Circle({ show, x, y, handleCharacterSelect }){
 function Image(){
     const [showCircle, setShowCircle] = useState(false);
     const [circleX, setCircleX] = useState(0);
-    const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [circleY, setCircleY] = useState(0);
 
     useEffect(() => {
@@ -24,7 +23,7 @@ function Image(){
             const mapRect = mapElement.getBoundingClientRect();
 
             const waldoElement = document.querySelector(".character-waldo");
-            const wendaElement = document.querySelector(".character-wanda");
+            const wendaElement = document.querySelector(".character-wenda");
             const whitebeardElement = document.querySelector(".character-whitebeard");
             const odlawElement = document.querySelector(".character-odlaw");
 
@@ -54,10 +53,9 @@ function Image(){
         const characterElement = document.querySelector(`.character-${character}`);
         const characterRect = characterElement.getBoundingClientRect();
         if(circleX >= characterRect.left && circleX <= characterRect.right && circleY >= characterRect.top && circleY <= characterRect.bottom){
-            console.log(character);
+            const found = document.querySelector(`.${character}`);
+            found.classList.add("found");
         }
-
-        setSelectedCharacter(character);
         setShowCircle(false);
     };
 
@@ -66,7 +64,7 @@ function Image(){
         <img src={map} alt="loading map" className='map'/>
         <div className="character-hidden">
             <div className="hitbox character-waldo"></div>
-            <div className="hitbox character-wanda"></div>
+            <div className="hitbox character-wenda"></div>
             <div className="hitbox character-whitebeard"></div>
             <div className="hitbox character-odlaw"></div>
         </div>

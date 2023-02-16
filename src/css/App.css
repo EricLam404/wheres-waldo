@@ -45,8 +45,17 @@ body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: red;
 }
 
 .character-waldo {
   position: relative;
+}
+
+.found {
+  color: green;
+}
+
+.found img {
+  opacity: 50%;
 }
