@@ -19,17 +19,21 @@ function Image(){
     const [circleY, setCircleY] = useState(0);
 
     useEffect(() => {
-        const mapElement = document.querySelector(".map");
-        const waldoElement = document.querySelector(".character-waldo");
         const handleResize = () => {
+            const mapElement = document.querySelector(".map");
             const mapRect = mapElement.getBoundingClientRect();
+
+            const waldoElement = document.querySelector(".character-waldo");
+            const wendaElement = document.querySelector(".character-wanda");
+
             waldoElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 915}px`;
             waldoElement.style.top = `${mapRect.top + 251}px`;
-        };
-        const mapRect = mapElement.getBoundingClientRect();
 
-        waldoElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 915}px`;
-        waldoElement.style.top = `${mapRect.top + 252}px`;
+            wendaElement.style.left = `${(mapRect.left > 0 ? mapRect.left : 0) + 1150}px`;
+            wendaElement.style.top = `${mapRect.top + 278}px`;
+        };
+
+        handleResize();
         window.addEventListener("resize", handleResize);
     }, []);
 
@@ -40,6 +44,7 @@ function Image(){
     };
     const handleCharacterSelect = (e, character) => {
         const characterElement = document.querySelector(`.character-${character}`);
+        console.log(characterElement)
         if(!characterElement) return;
         const characterRect = characterElement.getBoundingClientRect();
         if(circleX >= characterRect.left && circleX <= characterRect.right && circleY >= characterRect.top && circleY <= characterRect.bottom){
@@ -53,7 +58,10 @@ function Image(){
     return (
         <div onClick={handleClick} className="img-container">
         <img src={map} alt="loading map" className='map'/>
-        <div className="character-waldo" style={{left: '69.4%', top: '40%'}}></div>
+        <div className="character-hidden">
+            <div className="hitbox character-waldo"></div>
+            <div className="hitbox character-wanda"></div>
+        </div>
         <Circle show={showCircle} x={circleX} y={circleY} handleCharacterSelect={handleCharacterSelect}/>
         </div>
     );

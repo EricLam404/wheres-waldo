@@ -19,4 +19,13 @@
     border: 1px solid red;
     pointer-events: none;
 }
+
+.character-wanda {
+    position: absolute;
+    width: 15px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1px solid red;
+    pointer-events: none;
+}
   
