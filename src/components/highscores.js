@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Link } from 'react-router-dom';
 import "../css/highscores.css";
 
 function Highscores({query, collection, getFirestore, orderBy, onSnapshot}){
@@ -21,7 +22,7 @@ function Highscores({query, collection, getFirestore, orderBy, onSnapshot}){
       querySnapshot.forEach((doc) => {
         scoresData.push({ id: doc.id, ...doc.data() });
       });
-      scoresData.sort((a, b) => b.time - a.time);
+      scoresData.sort((a, b) => a.time - b.time);
       setScores(scoresData);
     });
 
@@ -39,6 +40,9 @@ function Highscores({query, collection, getFirestore, orderBy, onSnapshot}){
           </div>
         ))}
       </div>
+      <Link to="/">
+        <div>Home</div>
+      </Link>
     </div>
   );
 };
