@@ -58,11 +58,11 @@ function App() {
     }
   );
   const [timer, setTimer] = useState(true);
+  const [time, setTime] = useState(0);
   
   const checkWinner = () => {
     const win = Object.values(found).every(value => value);
     if(win){
-      saveScore("temp", 0);
       setTimer(false);
     }
   };
@@ -70,6 +70,10 @@ function App() {
   const handleFound = (char) => {
     setFound({...found, [char]: true});
   };
+
+  const handleTime = (t) => {
+    setTime(t);
+  }
 
   useEffect(() => {
     checkWinner();
@@ -81,11 +85,17 @@ function App() {
     }
   }, [timer]);
 
+  useEffect(() => {
+    if (time != 0) {
+      saveScore("temp", time);
+    }
+  }, [time]);
+
   return (
     <div className="app">
       <div className='header'> Where's Waldo</div>
       <div className='timer-container'>
-        <Timer timer={timer}/>
+        <Timer timer={timer} handleTime={handleTime}/>
       </div>
       <div className='container'>
         <div>
