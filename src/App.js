@@ -57,13 +57,13 @@ function App() {
         odlaw: false
     }
   );
+  const [timer, setTimer] = useState(true);
   
   const checkWinner = () => {
     const win = Object.values(found).every(value => value);
-    console.table(found);
-    console.log(win);
     if(win){
       saveScore("temp", 0);
+      setTimer(false);
     }
   };
 
@@ -75,11 +75,17 @@ function App() {
     checkWinner();
   }, [found]);
 
+  useEffect(() => {
+    if (!timer) {
+      console.log("Timer stopped");
+    }
+  }, [timer]);
+
   return (
     <div className="app">
       <div className='header'> Where's Waldo</div>
       <div className='timer-container'>
-        <Timer/>
+        <Timer timer={timer}/>
       </div>
       <div className='container'>
         <div>
