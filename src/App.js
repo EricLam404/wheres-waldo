@@ -59,6 +59,7 @@ function App() {
   );
   const [timer, setTimer] = useState(true);
   const [time, setTime] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
   
   const checkWinner = () => {
     const win = Object.values(found).every(value => value);
@@ -73,6 +74,10 @@ function App() {
 
   const handleTime = (t) => {
     setTime(t);
+  }
+
+  const handleWrong = (state) => {
+    setShowAlert(state);
   }
 
   useEffect(() => {
@@ -91,6 +96,13 @@ function App() {
     }
   }, [time]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [showAlert]);
+
   return (
     <div className="app">
       <div className='header'> Where's Waldo</div>
@@ -99,7 +111,7 @@ function App() {
       </div>
       <div className='container'>
         <div>
-          <Image handleFound={handleFound}/>
+          <Image handleFound={handleFound} handleWrong={handleWrong}/>
         </div>
         <div className='characters'>
           <div className='character waldo'>
@@ -120,8 +132,15 @@ function App() {
           </div>
         </div>
       </div>
+      {showAlert && <div className="alert"><p>You did not click the character</p></div>}
     </div> 
   );
 }
 
 export default App;
+
+/*
+  Alerts when chose wrong
+  Alert when win/ask for username
+  page for high scores
+*/

@@ -46,3 +46,26 @@
     border: 1px solid red;
     pointer-events: none;
 }
+
+.alert {
+    background-color: #f44336;
+    color: white;
+    font-size: 14px;
+    padding: 8px 12px;
+    position: fixed;
+    top: 0;
+    width: 20w;
+    text-align: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+    z-index: 1;
+    border-radius: 25px;
+}
+  
+.alert.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease-in-out;
+}
+  
+  

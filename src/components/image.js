@@ -12,7 +12,7 @@ function Circle({ show, x, y, handleCharacterSelect }){
   ) : null;
 };
 
-function Image({ handleFound }){
+function Image({ handleFound, handleWrong }){
     const [showCircle, setShowCircle] = useState(false);
     const [circleX, setCircleX] = useState(0);
     const [circleY, setCircleY] = useState(0);
@@ -58,19 +58,22 @@ function Image({ handleFound }){
             found.classList.add("found");
             handleFound(character);
         }
+        else {
+            handleWrong(true);
+        }
         setShowCircle(false);
     };
 
     return (
         <div onClick={handleClick} className="img-container">
-        <img src={map} alt="loading map" className='map'/>
-        <div className="character-hidden">
-            <div className="hitbox character-waldo"></div>
-            <div className="hitbox character-wenda"></div>
-            <div className="hitbox character-whitebeard"></div>
-            <div className="hitbox character-odlaw"></div>
-        </div>
-        <Circle show={showCircle} x={circleX} y={circleY} handleCharacterSelect={handleCharacterSelect}/>
+            <img src={map} alt="loading map" className='map'/>
+            <div className="character-hidden">
+                <div className="hitbox character-waldo"></div>
+                <div className="hitbox character-wenda"></div>
+                <div className="hitbox character-whitebeard"></div>
+                <div className="hitbox character-odlaw"></div>
+            </div>
+            <Circle show={showCircle} x={circleX} y={circleY} handleCharacterSelect={handleCharacterSelect}/>
         </div>
     );
 };
