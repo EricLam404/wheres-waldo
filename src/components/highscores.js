@@ -30,19 +30,21 @@ function Highscores({query, collection, getFirestore, orderBy, onSnapshot}){
   }, []);
   
   return (
-    <div>
-      Highscores
-      <div>
+    <div className="leaderboard-container">
+      <div className="header">
+        <div className="leaderboard-name">Leaderboard</div>
+        <Link to="/">
+          <div>Home</div>
+        </Link>
+      </div>
+      <div className="highscores">
         {scores.map((score) => (
-          <div key={score.id}>
-            <h2>{score.name}</h2>
-            <p>{score.time}</p>
+          <div key={score.id} className="score">
+            <h2 className="name">{score.name[0].toUpperCase() + score.name.substring(1)}</h2>
+            <p className="score">{score.time} Seconds</p>
           </div>
         ))}
       </div>
-      <Link to="/">
-        <div>Home</div>
-      </Link>
     </div>
   );
 };
