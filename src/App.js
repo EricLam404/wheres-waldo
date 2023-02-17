@@ -6,6 +6,7 @@ import waldo from './pics/characters/waldo.jpeg';
 import wenda from './pics/characters/wenda.png';
 import whitebeard from './pics/characters/whitebeard.jpeg';
 import odlaw from './pics/characters/odlaw.jpeg';
+import { Link } from 'react-router-dom';
 
 //firebase imports
 import { initializeApp } from 'firebase/app';
@@ -13,13 +14,6 @@ import {
   getFirestore,
   collection,
   addDoc,
-  query,
-  orderBy,
-  limit,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-  doc,
   serverTimestamp,
 } from 'firebase/firestore';
 
@@ -62,6 +56,7 @@ function App() {
   const [showAlert, setShowAlert] = useState(false);
   const [change, setChange] = useState("");
   const [name, setName] = useState("");
+  const [showWon, setShowWon] = useState(false);
   
   const checkWinner = () => {
     const win = Object.values(found).every(value => value);
@@ -98,6 +93,7 @@ function App() {
       setName("");
       setTime(0);
       setChange(0);
+      setShowWon(true);
       const input = document.querySelector(".input-container");
       if(input) input.classList.add("hidden");
     }
@@ -110,6 +106,13 @@ function App() {
     }, 5000);
     return () => clearTimeout(timeout);
   }, [showAlert]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowWon(false);
+    }, 5000);
+    return () => clearTimeout(timeout);
+  }, [showWon]);
 
   return (
     <div className="app">
@@ -140,6 +143,9 @@ function App() {
           </div>
         </div>
       </div>
+      <Link to="/highscores">
+        <div>Leaderboard/Highscores</div>
+      </Link>
       {showAlert && <div className="alert"><p>You did not click the character</p></div>}
       {Object.values(found).every(value => value) && 
         <div className="input-container">
@@ -166,6 +172,8 @@ function App() {
         />    
       </div>
       }
+      {showWon && <div className="alert won"><p>Score Saved!</p></div>}
+
     </div> 
   );
 }
