@@ -8,7 +8,7 @@ function CharacterList({ x, y, onCharacterSelect }){
     <ul className="character-list" style={{ left: x + 20, top: y - 30 }}>
       {characters.map((char, index) => (
         <li key={index} onClick={(e) => onCharacterSelect(e, char)}>
-          {char}
+          {char[0].toUpperCase() + char.substring(1)}
         </li>
       ))}
     </ul>
