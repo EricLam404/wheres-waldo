@@ -60,6 +60,8 @@ function App() {
   const [timer, setTimer] = useState(true);
   const [time, setTime] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
+  const [change, setChange] = useState("");
+  const [name, setName] = useState("");
   
   const checkWinner = () => {
     const win = Object.values(found).every(value => value);
@@ -91,10 +93,16 @@ function App() {
   }, [timer]);
 
   useEffect(() => {
-    if (time != 0) {
-      saveScore("temp", time);
+    if (time !== 0 && name !== "") {
+      saveScore(name, time);
+      setName("");
+      setTime(0);
+      setChange(0);
+      const input = document.querySelector(".input-container");
+      if(input) input.classList.add("hidden");
     }
-  }, [time]);
+  }, [time, name]);
+  
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -133,6 +141,31 @@ function App() {
         </div>
       </div>
       {showAlert && <div className="alert"><p>You did not click the character</p></div>}
+      {Object.values(found).every(value => value) && 
+        <div className="input-container">
+          <input
+          type="text"
+          value={change}
+          onChange={(event) => setChange(event.target.value)}
+          onBlur={(event) => {
+            const enteredName = event.target.value.trim();
+            if (enteredName) {
+              setName(enteredName);
+            }
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              const enteredName = event.target.value.trim();
+              if (enteredName) {
+                setName(enteredName);
+              }
+            }
+          }}
+          placeholder="Enter your name"
+          className="input-field"
+        />    
+      </div>
+      }
     </div> 
   );
 }
@@ -140,7 +173,6 @@ function App() {
 export default App;
 
 /*
-  Alerts when chose wrong
   Alert when win/ask for username
   page for high scores
 */
