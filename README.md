@@ -1,7 +1,10 @@
-wheres-waldo
-A library book catalog built with React using Firebase for the backend.
+#Where's Waldo
+Where's Waldo is a web application that lets users play the classic game of finding Waldo, his friends, and various other hidden objects within an image. This project uses Firebase Hosting to serve the web application and Firebase Cloud Firestore to store game data.
 
-Live server:
+###Technologies Used
+HTML, CSS, and JavaScript
+Firebase Hosting
+Firebase Cloud Firestore
+
+###Live server:
 https://wheres-waldo-b6824.web.app/
-
-This is a solution to the Where's Waldo project, a component of The Odin Project full stack web development course.
