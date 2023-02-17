@@ -9,7 +9,19 @@ import odlaw from './pics/characters/odlaw.jpeg';
 
 //firebase imports
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+  setDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.apiKey,
@@ -23,12 +35,17 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
+async function saveScore(name, time) {
+  try {
+    await addDoc(collection(getFirestore(), 'highscores'), {
+      name: name,
+      time: time,
+      timestamp: serverTimestamp()
+    });
+  }
+  catch(error) {
+    console.error('Error writing new message to Firebase Database', error);
+  }
 }
 
 function App() {
@@ -45,6 +62,9 @@ function App() {
     const win = Object.values(found).every(value => value);
     console.table(found);
     console.log(win);
+    if(win){
+      saveScore("temp", 0);
+    }
   };
 
   const handleFound = (char) => {
