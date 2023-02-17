@@ -122,7 +122,7 @@ function App({getFirestore, collection, addDoc, serverTimestamp}) {
           </div>
         </div>
       </div>
-      <Link to="/highscores">
+      <Link to="/highscores" className="link">
         <div>Leaderboard/Highscores</div>
       </Link>
       {showAlert && <div className="alert"><p>You did not click the character</p></div>}
