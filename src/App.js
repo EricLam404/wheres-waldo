@@ -8,41 +8,20 @@ import whitebeard from './pics/characters/whitebeard.jpeg';
 import odlaw from './pics/characters/odlaw.jpeg';
 import { Link } from 'react-router-dom';
 
-//firebase imports
-import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp,
-} from 'firebase/firestore';
-
-const firebaseConfig = {
-  apiKey: process.env.apiKey,
-  authDomain: "wheres-waldo-b6824.firebaseapp.com",
-  projectId: "wheres-waldo-b6824",
-  storageBucket: "wheres-waldo-b6824.appspot.com",
-  messagingSenderId: "224090004514",
-  appId: "1:224090004514:web:ae41c14b996ba517727e7b"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-async function saveScore(name, time) {
-  try {
-    await addDoc(collection(getFirestore(), 'highscores'), {
-      name: name,
-      time: time,
-      timestamp: serverTimestamp()
-    });
+function App({getFirestore, collection, addDoc, serverTimestamp}) {
+  async function saveScore(name, time) {
+    try {
+      await addDoc(collection(getFirestore(), 'highscores'), {
+        name: name,
+        time: time,
+        timestamp: serverTimestamp()
+      });
+    }
+    catch(error) {
+      console.error('Error writing new message to Firebase Database', error);
+    }
   }
-  catch(error) {
-    console.error('Error writing new message to Firebase Database', error);
-  }
-}
-
-function App() {
+  
   const [found, setFound] = useState(
     {
         waldo: false,
