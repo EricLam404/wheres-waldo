@@ -12,7 +12,7 @@ function Circle({ show, x, y, handleCharacterSelect }){
   ) : null;
 };
 
-function Image(){
+function Image({ handleFound }){
     const [showCircle, setShowCircle] = useState(false);
     const [circleX, setCircleX] = useState(0);
     const [circleY, setCircleY] = useState(0);
@@ -44,17 +44,19 @@ function Image(){
         window.addEventListener("resize", handleResize);
     }, []);
 
-    const handleClick = event => {
+    const handleClick = (event) => {
         setShowCircle(!showCircle);
         setCircleX(event.clientX);
         setCircleY(event.clientY);
     };
+
     const handleCharacterSelect = (e, character) => {
         const characterElement = document.querySelector(`.character-${character}`);
         const characterRect = characterElement.getBoundingClientRect();
         if(circleX >= characterRect.left && circleX <= characterRect.right && circleY >= characterRect.top && circleY <= characterRect.bottom){
             const found = document.querySelector(`.${character}`);
             found.classList.add("found");
+            handleFound(character);
         }
         setShowCircle(false);
     };
